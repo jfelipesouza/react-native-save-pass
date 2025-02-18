@@ -1,11 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, Text} from 'react-native';
+import {Header} from './components/header';
 
 export const MyApp: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Bem vindo de volta</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor={'trasnparent'} hidden />
+      <Header />
+
+      <Text style={styles.title}> Minhas Senhas</Text>
+    </SafeAreaView>
   );
 };
 
@@ -13,9 +17,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    gap: 15,
   },
   text: {
     fontSize: 23,
     fontWeight: '500',
+  },
+  title: {
+    marginLeft: 15,
+    fontWeight: '600',
+    fontSize: 18,
   },
 });
