@@ -1,11 +1,20 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {Plus} from 'lucide-react-native';
 import {h, w} from '../../utils/dimensions';
 
 export const AddButton: React.FC = () => {
+  const navigation = useNavigation();
+
+  const goToRegisterScreen = () => {
+    navigation.navigate('register-password' as never);
+  };
   return (
-    <TouchableOpacity style={styles.buttonContainer}>
-      <Text style={styles.icon}>Add</Text>
+    <TouchableOpacity
+      style={styles.buttonContainer}
+      onPress={goToRegisterScreen}>
+      <Plus color={'#fff'} size={22} />
     </TouchableOpacity>
   );
 };
