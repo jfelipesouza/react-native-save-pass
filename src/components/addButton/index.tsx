@@ -10,6 +10,7 @@ export const AddButton: React.FC = () => {
   const goToRegisterScreen = () => {
     navigation.navigate('register-password' as never);
   };
+
   return (
     <TouchableOpacity
       style={styles.buttonContainer}
