@@ -1,14 +1,28 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Text, TextInput, Image} from 'react-native';
 
 import {h, w} from '../../utils/dimensions';
 
+type Saudation = 'Bom dia' | 'Boa tarde' | 'Boa noite';
 const Header: React.FC = () => {
+  const [saudation, setSaudation] = useState<Saudation>('Bom dia');
+
+  useEffect(() => {
+    const hour = new Date().getHours();
+    if (hour > 12 && hour < 18) {
+      setSaudation('Boa tarde');
+    } else if (hour >= 18) {
+      setSaudation('Boa noite');
+    } else {
+      setSaudation('Bom dia');
+    }
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <View>
-          <Text style={styles.saudation}>Bom dia, </Text>
+          <Text style={styles.saudation}>{saudation}, </Text>
           <Text style={styles.saudation}>Que bom te vê Marta! </Text>
         </View>
         <View style={styles.imgProfile}>
