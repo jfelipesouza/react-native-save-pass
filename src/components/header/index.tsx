@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Text, TextInput, Image} from 'react-native';
 
 import {h, w} from '../../utils/dimensions';
+import {Saudation} from '../../@types/saudation';
 
-type Saudation = 'Bom dia' | 'Boa tarde' | 'Boa noite';
 const Header: React.FC = () => {
   const [saudation, setSaudation] = useState<Saudation>('Bom dia');
 
