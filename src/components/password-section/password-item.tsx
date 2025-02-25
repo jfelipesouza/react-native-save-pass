@@ -1,18 +1,19 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {PasswordItemProps} from '../../@types/passwordSection';
 
 export const PasswordItem: React.FC<PasswordItemProps> = ({index, item}) => {
+  const handleSelect = () => {
+    Alert.alert('Sua senha', item.password);
+  };
   return (
     <View style={styles.selectItemContainer}>
       <TouchableOpacity
-        onPress={() => {
-          console.log('Clicou');
-        }}
         activeOpacity={0.8}
-        style={styles.selectItem}>
-        <Text style={styles.itemText} key={index.toString().concat(item)}>
-          {item}
+        style={styles.selectItem}
+        onPress={handleSelect}>
+        <Text style={styles.itemText} key={index + item.id}>
+          {item.name}
         </Text>
       </TouchableOpacity>
     </View>

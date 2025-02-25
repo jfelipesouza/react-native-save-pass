@@ -20,6 +20,7 @@ export const PasswordsSection: React.FC<PasswordsSectionProps> = ({
       }
       contentContainerStyle={styles.contentContainer}
       style={styles.container}
+      keyExtractor={item => item.id}
     />
   );
 };

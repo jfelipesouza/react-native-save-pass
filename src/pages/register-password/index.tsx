@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -10,9 +10,13 @@ import {
 } from 'react-native';
 import {colors} from '../../styles/colors';
 import {useNavigation} from '@react-navigation/native';
+import {createPassword} from '../../services/databases/watermelon/functions';
 
 export const RegisterPasswordPage: React.FC = () => {
   const navigation = useNavigation();
+
+  const [name, setName] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   const goToHome = () => {
     navigation.dispatch({
@@ -24,6 +28,13 @@ export const RegisterPasswordPage: React.FC = () => {
     });
   };
 
+  const savePassword = async () => {
+    const success = await createPassword({name, password});
+    if (success) {
+      goToHome();
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.container}>
@@ -33,6 +44,8 @@ export const RegisterPasswordPage: React.FC = () => {
             style={styles.input}
             placeholderTextColor={'#1d1d1dbe'}
             placeholder="Digite o nome da aplicação"
+            value={name}
+            onChangeText={text => setName(text)}
           />
         </View>
         <View style={styles.textfield}>
@@ -41,10 +54,12 @@ export const RegisterPasswordPage: React.FC = () => {
             style={styles.input}
             placeholderTextColor={'#1d1d1dbe'}
             placeholder="Digite sua senha"
+            value={password}
+            onChangeText={text => setPassword(text)}
           />
         </View>
 
-        <TouchableOpacity style={styles.btn} onPress={goToHome}>
+        <TouchableOpacity style={styles.btn} onPress={savePassword}>
           <Text style={styles.btnText}>Salvar senha</Text>
         </TouchableOpacity>
       </ScrollView>

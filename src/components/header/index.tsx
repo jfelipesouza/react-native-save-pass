@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Text, TextInput, Image} from 'react-native';
+import {View, StyleSheet, Text, Image} from 'react-native';
 
 import {h, w} from '../../utils/dimensions';
 import {Saudation} from '../../@types/saudation';
 
 const Header: React.FC = () => {
   const [saudation, setSaudation] = useState<Saudation>('Bom dia');
+  const [profile, setProfile] = useState(
+    'https://i.redd.it/im-cancer-free-v0-9as2syfd75v91.jpg?width=1440&format=pjpg&auto=webp&s=da5592aaa3ca5af5f946227a08d3ead001052285',
+  );
 
   useEffect(() => {
     const hour = new Date().getHours();
@@ -16,6 +19,8 @@ const Header: React.FC = () => {
     } else {
       setSaudation('Bom dia');
     }
+    const profileImg = 'https://github.com/octocat.png';
+    setProfile(profileImg);
   }, []);
 
   return (
@@ -23,23 +28,16 @@ const Header: React.FC = () => {
       <View style={styles.topContainer}>
         <View>
           <Text style={styles.saudation}>{saudation}, </Text>
-          <Text style={styles.saudation}>Que bom te vê Marta! </Text>
+          <Text style={styles.saudation}>Que bom te vê {} </Text>
         </View>
         <View style={styles.imgProfile}>
           <Image
             style={styles.imgProfile}
             source={{
-              uri: 'https://i.redd.it/im-cancer-free-v0-9as2syfd75v91.jpg?width=1440&format=pjpg&auto=webp&s=da5592aaa3ca5af5f946227a08d3ead001052285',
+              uri: profile,
             }}
           />
         </View>
-      </View>
-      <View style={styles.bottomContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Procure a sua senha"
-          placeholderTextColor={'#333'}
-        />
       </View>
     </View>
   );
@@ -48,10 +46,11 @@ const Header: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     width: w,
-    minHeight: h * 0.2,
+    minHeight: h * 0.125,
     backgroundColor: '#008080',
     padding: 12,
     gap: 12,
+    justifyContent: 'center',
   },
   topContainer: {
     flexDirection: 'row',
