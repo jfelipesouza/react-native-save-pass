@@ -6,11 +6,9 @@ import {Saudation} from '../../@types/saudation';
 
 const Header: React.FC = () => {
   const [saudation, setSaudation] = useState<Saudation>('Bom dia');
-  const [profile, setProfile] = useState(
-    'https://i.redd.it/im-cancer-free-v0-9as2syfd75v91.jpg?width=1440&format=pjpg&auto=webp&s=da5592aaa3ca5af5f946227a08d3ead001052285',
-  );
+  const [profile, setProfile] = useState('https://github.com/octocat.png');
 
-  useEffect(() => {
+  const getSaudation = () => {
     const hour = new Date().getHours();
     if (hour > 12 && hour < 18) {
       setSaudation('Boa tarde');
@@ -19,8 +17,15 @@ const Header: React.FC = () => {
     } else {
       setSaudation('Bom dia');
     }
+  };
+  const getProfileImg = () => {
     const profileImg = 'https://github.com/octocat.png';
     setProfile(profileImg);
+  };
+
+  useEffect(() => {
+    getSaudation();
+    getProfileImg();
   }, []);
 
   return (

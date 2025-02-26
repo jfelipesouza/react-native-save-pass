@@ -17,6 +17,7 @@
     "lucide-react-native": "^0.475.0",
     "react": "18.3.1",
     "react-native": "0.77.1",
+    "react-native-app-auth": "^8.0.1",
     "react-native-gesture-handler": "^2.23.1",
     "react-native-mmkv-storage": "^0.11.2",
     "react-native-safe-area-context": "^5.2.0",
